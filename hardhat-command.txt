@@ -1,0 +1,14 @@
+#deploy contract
+npx hardhat run --network goerli scripts/deploy.js
+
+#verify contract
+npx hardhat verify --network goerli --contract "contracts/ContractName.sol:ContractName" 0x_contractaddress "CollectionName" "SYMBOLS"
+
+
+mint at : https://nft-drop-dapp-blond.vercel.app/
+
+This collection is testnets used, to learning material for people new to nft, they can learn the mint nft process with testnet funds instead of using their real funds.
+
+
+Contract lates update, for collection start from 0 use "KidzukiGoerli.sol" 
+if collection start from 1 use "Karafuru3D.sol"
