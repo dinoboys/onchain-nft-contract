@@ -1,13 +1,18 @@
 const hre = require("hardhat");
 
 async function main() {
-  const BOC = await hre.ethers.getContractFactory("BOC");
-  const _BOCDeployed = await BOC.deploy(
-    "0x2a8350BCE39C218423886F552425367065791cBd"
+  const FlappyOwlTestnet = await hre.ethers.getContractFactory(
+    "FlappyOwlTestnet"
+  );
+  const _FlappyOwlTestnetDeployed = await FlappyOwlTestnet.deploy(
+    "0x995804aaB92225da19e4Be63F3148f436de6103B"
   );
 
-  await _BOCDeployed.deployed();
-  console.log("BOC Nft was deployed to:", _BOCDeployed.address);
+  await _FlappyOwlTestnetDeployed.deployed();
+  console.log(
+    "FlappyOwlTestnet Nft was deployed to:",
+    _FlappyOwlTestnetDeployed.address
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

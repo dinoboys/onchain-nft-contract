@@ -4,6 +4,11 @@ npx hardhat run --network goerli scripts/deploy.js
 #verify contract
 npx hardhat verify --network goerli --contract "contracts/ContractName.sol:ContractName" 0x_contractaddress "CollectionName" "SYMBOLS"
 
+#verify descryptor
+npx hardhat verify --network goerli --contract "contracts/utils/FODescriptor.sol:FODescriptor" 0x995804aaB92225da19e4Be63F3148f436de6103B
+decriptor FlapyOwl Address 0x995804aaB92225da19e4Be63F3148f436de6103B
+
+les fee deploy (07.00-10.00 GMT+7)
 
 mint at : https://nft-drop-dapp-blond.vercel.app/
 
