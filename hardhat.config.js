@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY;
 const ACCOUNT_KEY = process.env.ACCOUNT_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -33,9 +34,15 @@ module.exports = {
     localhost: {
       chainId: 31337,
     },
+    bsctestnet: {
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
+      chainId: 97,
+      // gasPrice: 20000000000,
+      accounts: [ACCOUNT_KEY],
+    },
   },
   etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
+    apiKey: BSCSCAN_API_KEY,
   },
   mocha: {
     timeout: 2000000,

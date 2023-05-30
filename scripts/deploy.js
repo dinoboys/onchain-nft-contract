@@ -5,7 +5,7 @@ async function main() {
     "FlappyOwlTestnet"
   );
   const _FlappyOwlTestnetDeployed = await FlappyOwlTestnet.deploy(
-    "0x995804aaB92225da19e4Be63F3148f436de6103B"
+    "0x181Ab45E87a0d0650DFA6298103613a2a1e3F06e"
   );
 
   await _FlappyOwlTestnetDeployed.deployed();
