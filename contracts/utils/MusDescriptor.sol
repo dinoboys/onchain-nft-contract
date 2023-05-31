@@ -43,7 +43,7 @@ contract MusDescriptor is ITokenDescriptor {
             abi.encodePacked(
                 '<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">',
                 '<rect width="100%" height="100%" fill="#25314d"/>',
-                '<text x="270" y="165" font-family="Courir, monospace" font-weight="900" font-size="65" text-anchor="middle" letter-spacing="10">',
+                '<text x="270" y="165" font-family="Ubuntu," font-weight="900" font-size="65" text-anchor="middle" letter-spacing="10">',
                 '<animate attributeName="dy" values="50;0;0:0" dur="0.5s" repeatCount="indefinite" />',
                 head.content,
                 face.content,
