@@ -1,18 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  const FlappyOwlTestnet = await hre.ethers.getContractFactory(
-    "FlappyOwlTestnet"
-  );
-  const _FlappyOwlTestnetDeployed = await FlappyOwlTestnet.deploy(
-    "0x181Ab45E87a0d0650DFA6298103613a2a1e3F06e"
+  const RobustusMus = await hre.ethers.getContractFactory("RobustusMus");
+  const _RobustusMusDeployed = await RobustusMus.deploy(
+    "0x3d4F1B1AD0327F5b09d11F19F9DE92E54944a3D0"
   );
 
-  await _FlappyOwlTestnetDeployed.deployed();
-  console.log(
-    "FlappyOwlTestnet Nft was deployed to:",
-    _FlappyOwlTestnetDeployed.address
-  );
+  await _RobustusMusDeployed.deployed();
+  console.log("RobustusMus Nft was deployed to:", _RobustusMusDeployed.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

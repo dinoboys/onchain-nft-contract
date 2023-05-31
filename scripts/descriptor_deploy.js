@@ -1,13 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  const FODescriptorV2 = await hre.ethers.getContractFactory("FODescriptorV2");
-  const _FODescriptorV2Deployed = await FODescriptorV2.deploy();
+  const MusDescriptor = await hre.ethers.getContractFactory("MusDescriptor");
+  const _MusDescriptorDeployed = await MusDescriptor.deploy();
 
-  await _FODescriptorV2Deployed.deployed();
+  await _MusDescriptorDeployed.deployed();
   console.log(
-    "FODescriptorV2 Nft was deployed to:",
-    _FODescriptorV2Deployed.address
+    "MusDescriptor Nft was deployed to:",
+    _MusDescriptorDeployed.address
   );
 }
 

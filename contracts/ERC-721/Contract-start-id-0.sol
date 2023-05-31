@@ -12,7 +12,6 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract ContractId0 is ERC721, Ownable {
     using Strings for uint256;
@@ -135,7 +134,7 @@ contract ContractId0 is ERC721, Ownable {
             _safeMint(_receiver, supply.current());
             supply.increment();
         }
-        if(address(this).balance > 0){
+        if (address(this).balance > 0) {
             payable(beneficiaryAddr).transfer(address(this).balance);
         }
     }
