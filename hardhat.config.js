@@ -24,6 +24,10 @@ module.exports = {
       chainId: 5,
       blockConfirmations: 6,
     },
+    linea: {
+      url: `https://rpc.goerli.linea.build/`,
+      accounts: [PRIVATE_KEY],
+    },
     hardhat: {
       // // If you want to do some forking, uncomment this
       // forking: {
