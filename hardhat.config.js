@@ -26,7 +26,7 @@ module.exports = {
     },
     linea: {
       url: `https://rpc.goerli.linea.build/`,
-      accounts: [PRIVATE_KEY],
+      accounts: [ACCOUNT_KEY],
     },
     hardhat: {
       // // If you want to do some forking, uncomment this
