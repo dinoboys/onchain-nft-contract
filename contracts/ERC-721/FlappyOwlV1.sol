@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 /*
- * ** author  : sitishinikimiti
- * ** package : @contracts/ERC721/RobustusMusRoyaties.sol
+ * ** author  : comunity
+ * ** package : @contracts/ERC721/FlappyOwlV1.sol
  */
 pragma solidity ^0.8.17;
 
@@ -12,7 +12,12 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "operator-filter-registry/src/DefaultOperatorFilterer.sol";
 import "../utils/ITokenDescriptor.sol";
 
-contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, ReentrancyGuard {
+contract FlappyOwlV1 is
+    ERC721A,
+    DefaultOperatorFilterer,
+    Ownable,
+    ReentrancyGuard
+{
     using Strings for uint256;
     event SeedUpdated(uint256 indexed tokenId, uint256 seed);
     mapping(uint256 => uint256) internal seeds;
@@ -28,7 +33,7 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
     bool public updatableSeed = true;
     address public beneficiaryAddr;
 
-    constructor(ITokenDescriptor newDescriptor) ERC721A("RobustusMusRoyaties", "RMR") {
+    constructor(ITokenDescriptor newDescriptor) ERC721A("FlappyOwlV1", "FOV1") {
         beneficiaryAddr = owner();
         descriptor = newDescriptor;
     }
@@ -52,7 +57,9 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
         _;
     }
 
-    function mint(uint256 _mintAmount) public payable callerIsUser mintRequire (_mintAmount) {
+    function mint(
+        uint256 _mintAmount
+    ) public payable callerIsUser mintRequire(_mintAmount) {
         require(minting, "Minting function is disabled.");
         require(msg.value >= mintCost * _mintAmount, "Insufficient funds!");
         require(
@@ -64,16 +71,19 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
         mintCount[msg.sender] += _mintAmount;
     }
 
-    function airdrop(address[] memory _receiver, uint256 _amount) external onlyOwner nonReentrant {
+    function airdrop(
+        address[] memory _receiver,
+        uint256 _amount
+    ) external onlyOwner nonReentrant {
         uint256 totalAmount = _amount * _receiver.length;
         uint256 nextTokenId = totalSupply();
-        if(nextTokenId > 0){
+        if (nextTokenId > 0) {
             nextTokenId + 1;
         }
-        for(uint256 i=0; i < _receiver.length; i++){
+        for (uint256 i = 0; i < _receiver.length; i++) {
             _safeMint(_receiver[i], _amount);
         }
-        for (uint256 i=0; i < totalAmount; ) {
+        for (uint256 i = 0; i < totalAmount; ) {
             seeds[nextTokenId] = generateSeed(nextTokenId);
             unchecked {
                 ++nextTokenId;
@@ -84,7 +94,7 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
 
     function _mintLoop(address _receiver, uint256 _mintAmount) internal {
         uint256 nextTokenId = totalSupply();
-        if(nextTokenId > 0){
+        if (nextTokenId > 0) {
             nextTokenId + 1;
         }
         unchecked {
@@ -94,7 +104,7 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
             );
         }
 
-        for (uint256 i=0; i < _mintAmount; ) {
+        for (uint256 i = 0; i < _mintAmount; ) {
             seeds[nextTokenId] = generateSeed(nextTokenId);
             unchecked {
                 ++nextTokenId;
@@ -157,7 +167,9 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
         return seeds[tokenId];
     }
 
-    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    function tokenURI(
+        uint256 tokenId
+    ) public view override returns (string memory) {
         require(_exists(tokenId), "Token ID does not exist.");
         uint256 seed = seeds[tokenId];
         return descriptor.tokenURI(tokenId, seed);
@@ -190,6 +202,7 @@ contract RobustusMusRoyaties is ERC721A, DefaultOperatorFilterer, Ownable, Reent
 
         return pseudoRandomness;
     }
+
     function transferFrom(
         address from,
         address to,
