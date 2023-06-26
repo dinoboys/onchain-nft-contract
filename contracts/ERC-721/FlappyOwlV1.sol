@@ -24,7 +24,7 @@ contract FlappyOwlV1 is
     mapping(address => uint256) public mintCount;
 
     ITokenDescriptor public descriptor;
-    uint256 public mintCost = 0.02 ether;
+    uint256 public mintCost = 0.0069 ether;
     uint256 public maxSupply = 21000;
     uint256 public maxMintAmountPerTx = 10;
     uint256 mintLimit = 10;
@@ -97,13 +97,6 @@ contract FlappyOwlV1 is
         if (nextTokenId > 0) {
             nextTokenId + 1;
         }
-        unchecked {
-            require(
-                nextTokenId + _mintAmount <= maxSupply,
-                "Exceeds max supply."
-            );
-        }
-
         for (uint256 i = 0; i < _mintAmount; ) {
             seeds[nextTokenId] = generateSeed(nextTokenId);
             unchecked {
@@ -153,15 +146,6 @@ contract FlappyOwlV1 is
         royaltyAmount = (feeNumerator * salePrice) / 100;
     }
 
-    // function burn(uint256 tokenId) public {
-    //     require(
-    //         _isApprovedOrOwner(_msgSender(), tokenId),
-    //         "Not approved to burn."
-    //     );
-    //     delete seeds[tokenId];
-    //     _burn(tokenId);
-    // }
-
     function getSeed(uint256 tokenId) public view returns (uint256) {
         require(_exists(tokenId), "Token ID does not exist.");
         return seeds[tokenId];
@@ -184,13 +168,13 @@ contract FlappyOwlV1 is
         uint256 bodySeed = 100 *
             (((r >> 144) % 7) + 10) +
             (((r >> 144) % 20) + 10);
-        uint256 legsSeed = 100 *
+        uint256 footSeed = 100 *
             (((r >> 192) % 2) + 10) +
             (((r >> 192) % 20) + 10);
         return
             10000 *
             (10000 * (10000 * headSeed + faceSeed) + bodySeed) +
-            legsSeed;
+            footSeed;
     }
 
     function random(
