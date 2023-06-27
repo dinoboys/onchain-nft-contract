@@ -33,14 +33,9 @@ contract FlappyOwlV1 is
     bool public updatableSeed = true;
     address public beneficiaryAddr;
 
-    constructor(ITokenDescriptor newDescriptor) ERC721A("FlappyOwlV1", "FOV1") {
+    constructor(ITokenDescriptor newDescriptor) ERC721A("FlappyOwlV2", "FOV2") {
         beneficiaryAddr = owner();
         descriptor = newDescriptor;
-    }
-
-    modifier callerIsUser() {
-        require(tx.origin == msg.sender, "The caller is another contract");
-        _;
     }
 
     modifier mintRequire(uint256 _mintAmount) {
@@ -59,7 +54,7 @@ contract FlappyOwlV1 is
 
     function mint(
         uint256 _mintAmount
-    ) public payable callerIsUser mintRequire(_mintAmount) {
+    ) public payable nonReentrant mintRequire(_mintAmount) {
         require(minting, "Minting function is disabled.");
         require(msg.value >= mintCost * _mintAmount, "Insufficient funds!");
         require(
